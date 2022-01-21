@@ -64,17 +64,17 @@ def conc_change(theta):
     
     for i in range(1, int(minutes/dt)):
         if WT[i-1] < 0:
-            print(f'{i-1}: WT below 0: {WT[i-1]}')
-        elif short[i-1] < 0:
-            print(f'{i-1}: short below 0: {short[i-1]}')
-        elif dicer[i-1] < 0:
-            print(f'{i-1}: dicer 0: {dicer[i-1]}')
-        elif WT_dicer[i-1] < 0:
-            print(f'{i-1}: WT_dicer below 0: {WT_dicer[i-1]}')
-        elif short_dicer[i-1] < 0:
-            print(f'{i-1}: short_dicer below 0: {short_dicer[i-1]}')
-        elif mirna[i-1] < 0:
-            print(f'{i-1}: mirna below 0: {mirna[i-1]}')
+            WT[i-1] = 0
+        if short[i-1] < 0:
+            short[i-1] = 0
+        if dicer[i-1] < 0:
+            pdicer[i-1] = 0
+        if WT_dicer[i-1] < 0:
+            WT_dicer[i-1]
+        if short_dicer[i-1] < 0:
+            short_dicer[i-1]
+        if mirna[i-1] < 0:
+            mirna[i-1] = 0
             
         WT[i] = WT[i-1] + dt * (WT_dicer[i-1] * k_1 - WT[i-1] * dicer[i-1] * k1)
         short[i] = short[i-1] + dt * (short_dicer[i-1] * k_2 - short[i-1] * dicer[i-1] * k2)
