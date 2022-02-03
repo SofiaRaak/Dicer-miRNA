@@ -35,6 +35,10 @@ short_y = np.array([0, 0.0033684107002276975, 0.007599822974028003, 0.0100191778
 data_values = np.array([[WT_y],
                        [short_y]])
 
+
+def test():
+    print("Module model.py successfully loaded.")
+
 #split model
 def conc_change(theta):    
     k1, k2, k3 = theta
