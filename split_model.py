@@ -37,7 +37,7 @@ data_values = np.array([[WT_y],
 
 
 def test():
-    print("Module model.py successfully loaded.")
+    print("Module split_model.py successfully loaded.")
 
 #split model
 def conc_change(theta):    
