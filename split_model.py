@@ -84,12 +84,14 @@ def conc_change(theta):
         #wild type pre-mirna loop length
         WT[i] = WT[i-1] * dt*(WT_dicer1[i-1]*k_1 - WT[i-1]*dicer1[i-1]*k1)
         dicer1[i] = dicer1[i-1] * dt*(WT_dicer1[i-1]*(k_1 + k3) - dicer1[i-1] * WT[i-1] * k1)
-        mirna1 = (WT[0] + WT_dicer1[0]) - (WT_dicer1[i] + WT[i])
+        mirna1[i] = mirna1[i-1] * dt*(WT_dicer1*k3)
+        #mirna1[i] = (WT[0] + WT_dicer1[0]) - (WT_dicer1[i] + WT[i])
         
         #short loop pre-mirna
         short[i] = short[i-1] * dt*(short_dicer2[i-1]*k_2 - short[i-1] * dicer2[i-1]*k2)
         dicer2[i] = dicer2[i-1] * dt*(short_dicer2[i-1]*(k_2 * k3) - dicer2[i-1] * short[i-1] * k2)
-        mirna2 = (short[0] +  short_dicer2[0]) - (short[i] - short_dicer2[i])
+        mirna2[i] = mirna2[i-1] * dt*(short_dicer2[i-1]*k3)
+        #mirna2[i] = (short[0] +  short_dicer2[0]) - (short[i] - short_dicer2[i])
         
         return WT, short 
 
