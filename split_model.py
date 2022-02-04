@@ -103,8 +103,8 @@ def frac_diced(theta):
     short_diced = np.zeros(int(minutes/dt))
     
     for i in range(1, int(minutes/dt)):
-        WT_diced[i] = (WT[0] - WT[i]) / WT[0]
-        short_diced[i] = (short[i] - short[0]) / short[0]
+        WT_diced[i] = (WT[i]) / WT[0]
+        short_diced[i] = (short[i]) / short[0]
     
     return WT_diced, short_diced
 
