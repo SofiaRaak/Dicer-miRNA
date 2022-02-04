@@ -37,5 +37,10 @@ def conc_change(theta):
     WT_dicer = np.zeros(int(minutes/dt))
     mirna = np.zeros(int(minutes/dt))
 
+    WT[[0] = WT_init
+    dicer[0] = dicer_init
+
     for i in range(1, int(minutes/dt)):
-        WT[i] = WT[i-1] 
+        WT[i] = WT[i-1] + dt*(WT_dicer[i-1]*k_1 - WT[i-1]*dicer[i-1]*k1)
+        dicer[i] = dicer[i-1] + dt*(WT_dicer[i-1]*k_1 + WT_dicer[i-1]*k3 - WT[i-1]*dicer[i-1]*k1)
+        WT_dicer[i] = 
