@@ -1,0 +1,41 @@
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.optimize import minimize
+from scipy.optimize import curve_fit
+import cma
+import os
+
+#timesteps
+dt = 0.0001
+minutes = 60
+
+Kd_wt = 25.4 #nM, experimental values
+
+#K_d = k_off / k_on
+
+WT_init = 1 #nM, from experimental setup
+dicer_init = 5 #nM
+mirna = 0
+
+k1 = 5
+k_1 = Kd_wt * k1
+k3 = 5
+
+theta = np.array([k1, k3])
+
+#data fig 1
+time = np.array([0, 5, 10, 20, 40, 60])
+WT_y = np.array([0, 0.11144276160503169, 0.16566679779700877, 0.23905143587726366, 0.2954956726986665, 0.2946793863099961])
+
+def conc_change(theta):
+    k1, k3 = theta
+    k1 = np.log(k1)
+    k3 = np.log(k3)
+
+    WT = np.zeros(int(minutes/dt))
+    dicer = np.zeros(int(minutes/dt))
+    WT_dicer = np.zeros(int(minutes/dt))
+    mirna = np.zeros(int(minutes/dt))
+
+    for i in range(1, int(minutes/dt)):
+        WT[i] = WT[i-1] 
