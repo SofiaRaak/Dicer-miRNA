@@ -49,7 +49,7 @@ def conc_change(theta):
     return WT
 
 def frac_diced(theta):
-    WT = conc_chage(theta)
+    WT = conc_change(theta)
     
     WT_diced = np.zeros(int(minutes/dt))
 
@@ -66,3 +66,6 @@ def error(theta):
     WT_d = np.interp(time, ts, WT_diced)
 
     return np.sum((WT_y - WT_d)**2)
+
+def test():
+    print('Model module successfully imported.')
