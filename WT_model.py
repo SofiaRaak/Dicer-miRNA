@@ -58,3 +58,11 @@ def frac_diced(theta):
 
     return WT_diced
 
+def error(theta):
+    WT_diced = frac_diced(theta)
+
+    ts = np.linspace(0, minutes, int(minutes/dt))
+    
+    WT_d = np.interp(time, ts, WT_diced)
+
+    return np.sum((WT_y - WT_d)**2)
