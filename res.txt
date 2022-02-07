@@ -50,3 +50,16 @@ Nelder-Mead np.log()
         status: 0
        success: True
              x: array([46.82688038,  0.51429257,  1.0338832 ])
+
+
+New NM for WT only, np.log()
+final_simplex: (array([[2.35085773e+03, 1.03207715e+00],
+       [2.35084339e+03, 1.03207721e+00],
+       [2.35084948e+03, 1.03207717e+00]]), array([0.00473616, 0.00473616, 0.00473616]))
+           fun: 0.004736156648074281
+       message: 'Maximum number of function evaluations has been exceeded.'
+          nfev: 400
+           nit: 219
+        status: 1
+       success: False
+             x: array([2.35085773e+03, 1.03207715e+00])
