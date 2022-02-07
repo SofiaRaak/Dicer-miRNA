@@ -40,12 +40,9 @@ def test():
     print("Module split_model.py successfully loaded.")
 
 #split model
-def conc_change(theta):    
+def conc_change(theta):
+    theta = np.log(theta)
     k1, k2, k3 = theta
-    
-    k1 = np.log(k1)
-    k2 = np.log(k2)
-    k3 = np.log(k3)
     
     #empty arrays
     WT = np.zeros(int(minutes/dt))

@@ -28,9 +28,8 @@ time = np.array([0, 5, 10, 20, 40, 60])
 WT_y = np.array([0, 0.11144276160503169, 0.16566679779700877, 0.23905143587726366, 0.2954956726986665, 0.2946793863099961])
 
 def conc_change(theta):
+    np.log(theta)
     k1, k3 = theta
-    k1 = np.log(k1)
-    k3 = np.log(k3)
 
     WT = np.zeros(int(minutes/dt))
     dicer = np.zeros(int(minutes/dt))
