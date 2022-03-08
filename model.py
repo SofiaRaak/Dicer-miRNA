@@ -7,16 +7,11 @@ Background and data obtained from Tsutsumi et al. 2011, Nat Struct Mol Biol, 10.
 
 #Required libraries
 import numpy as np
-import matplotlib.pyplot as plt
-from scipy.optimize import minimize
-from scipy.optimize import curve_fit
-import cma
-import os
 import utils
 
 ## Model setup
 #timesteps
-dt = 0.0001
+dt = 0.001
 minutes = 60
 
 Kd_wt = 25.4 #nM, experimental values
@@ -37,10 +32,6 @@ k3 = 5
 
 theta = [k1, k2, k3]
 
-#data fig 1
-time = np.array([0, 5, 10, 20, 40, 60])
-WT_y = np.array([0, 0.11144276160503169, 0.16566679779700877, 0.23905143587726366, 0.2954956726986665, 0.2946793863099961])
-short_y = np.array([0, 0.0033684107002276975, 0.007599822974028003, 0.010019177812737812, 0.009603658536577298, 0.01242378048779691])
 
 #functions
 def conc_change(theta):
@@ -94,5 +85,9 @@ def frac_diced(theta):
     WT_diced = arrays['WT_diced']
     short_diced = arrays('short_diced')
     
-    for i in range(1, len(WT)):
+    for i in range(len(WT)):
+        WT_diced[i] = (WT[0] - WT[i]) / WT[0]
+        short_diced[i] = (short[0] - short[i]) / short[0]
         
+    return WT_diced, short_diced
+
