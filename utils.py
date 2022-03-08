@@ -33,9 +33,9 @@ def generate_arrays(*, species, init_conc, dt = 0.01, minutes = 60):
     if len(species) != len(init_conc):
         raise ValueError('Please provide initial concentrations for each species.')
     
-    for i in species:
+    for i in range(len(species)):
         arrays[species[i]] = np.zeros(int(minutes/dt))
-        arrays[species[i]][i] = inic_conc[i]
+        arrays[species[i]][i] = init_conc[i]
     
     return arrays
     
