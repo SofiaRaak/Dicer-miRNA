@@ -1,5 +1,6 @@
 import pytest
 from utils import generate_arrays
+from utils import error
 import numpy as np
 import math
 
@@ -11,3 +12,7 @@ def test_generate_arrays(species, init_conc, expect):
     test = generate_arrays(species=species, init_conc=init_conc, dt = 1, minutes = 3)
     
     assert test[species[0]][0] == expect[species[0]][0] and len(test[species[-1]]) == len(expect[species[-1]])
+    
+
+def test_error(model_values):
+    assert error(model_values) == expect
