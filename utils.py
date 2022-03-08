@@ -40,11 +40,11 @@ def generate_arrays(*, species, init_conc, dt = 0.01, minutes = 60):
     
     for i in range(len(species)):
         arrays[species[i]] = np.zeros(int(minutes/dt))
-        arrays[species[i]][i] = init_conc[i]
+        arrays[species[i]][0] = init_conc[i]
     
     return arrays
     
-def error(*model_values, dt, minutes):
+def error(*, model_values, dt, minutes):
     """
     A function that calculates the relative error of the model values against data values extracted from
     figure 1 in Tsutsumi et al.
@@ -61,7 +61,7 @@ def error(*model_values, dt, minutes):
     ts = np.linspace(0, minutes, int(minutes/dt))
     
     WT = np.interp(time, ts, WT_model)
-    short = np.interp(0, minutes, int(minutes/dt))
+    short = np.interp(time, ts, short_model)
     
     model = np.array([[WT],
                      [short]])
