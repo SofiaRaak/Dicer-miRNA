@@ -34,7 +34,7 @@ k3 = params.k3
 theta = [k1, k_1, k2, k_2, k3]
 
 #functions
-def ODE_mod(t, init_values):
+def ODE_model(t, init_values):
     """
     This is a function to be passed to an ODE solver.
     
