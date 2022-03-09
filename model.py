@@ -9,7 +9,7 @@ Background and data obtained from Tsutsumi et al. 2011, Nat Struct Mol Biol, 10.
 import numpy as np
 import utils
 import params
-from scipy.integrrate import solve_ivp
+from scipy.integrate import solve_ivp
 
 #import parameters
 dt = params.dt
@@ -26,7 +26,7 @@ k2 = params.k2
 k_2 = params.k_2
 k3 = params.k3
 
-theta = [k1, k2, k3]
+theta = [k1, k_1, k2, k_2, k3]
 
 #functions
 def ODE_mod(t, init_values):
@@ -51,7 +51,7 @@ def conc_change(theta):
     theta (array of floats): Initial reaction rates for each species
     """
     
-    k1, k2, k3 = np.log(theta)
+    k1, k_1, k2, k_2, k3 = np.log(theta)
     
     arrays = utils.generate_arrays(species = ['WT', 'dicer1', 'short', 'dicer2', 'WT_dicer', 'short_dicer', 'mirna1', 'mirna2'], 
                                    init_conc = [WT_init, dicer_init, short_init, dicer_init, 0, 0, mirna_init, mirna_init],

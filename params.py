@@ -1,6 +1,6 @@
 ## Model setup
 #timesteps
-dt = 0.01
+dt = 0.000001
 minutes = 60
 
 Kd_wt = 25.4 #nM, experimental values
