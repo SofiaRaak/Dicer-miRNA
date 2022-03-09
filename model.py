@@ -9,6 +9,7 @@ Background and data obtained from Tsutsumi et al. 2011, Nat Struct Mol Biol, 10.
 import numpy as np
 import utils
 import params
+from scipy.integrrate import solve_ivp
 
 #import parameters
 dt = params.dt
