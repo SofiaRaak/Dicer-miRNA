@@ -8,30 +8,24 @@ Background and data obtained from Tsutsumi et al. 2011, Nat Struct Mol Biol, 10.
 #Required libraries
 import numpy as np
 import utils
+import params
 
-## Model setup
-#timesteps
-dt = 0.0000001
-minutes = 60
+#import parameters
+dt = params.dt
+minutes = params.minutes
 
-Kd_wt = 25.4 #nM, experimental values
-Kd_short = 147.7 #nM, experimental values
+WT_init = params.WT_init
+short_init = params.short_init
+dicer_init = params.dicer_init
+mirna_init = params.mirna_init
 
-#K_d = k_off / k_on
-
-WT_init = 1 #nM, from experimental setup
-short_init = 1 #nM
-dicer_init = 5 #nM
-mirna_init = 0
-
-k1 = 5
-k_1 = Kd_wt * k1
-k2 = 5
-k_2 = Kd_short * k2
-k3 = 5
+k1 = params.k1
+k_1 = params.k_1
+k2 = params.k2
+k_2 = params.k_2
+k3 = params.k3
 
 theta = [k1, k2, k3]
-
 
 #functions
 def conc_change(theta):
