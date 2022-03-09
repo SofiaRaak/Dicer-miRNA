@@ -28,9 +28,23 @@ k3 = params.k3
 theta = [k1, k2, k3]
 
 #functions
+def ODE_mod(t, init_values):
+    """
+    This is a function to be passed to an ODE solver.
+    
+    Args
+    t (ndarray):           Time points
+    init_values (ndarray): Values from function at t
+    
+    Returns
+    WT, short (ndarrays):  Arrays containing concentrations of WT, short miRNA
+    """
+
 def conc_change(theta):
     """
     The main model function. Fills out numpy arrays through solving ODEs with the Euler method.
+    
+    NB! This method bugs out due to numbers too small to handle by computer.
     
     Args
     theta (array of floats): Initial reaction rates for each species
