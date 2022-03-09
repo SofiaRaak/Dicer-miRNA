@@ -1,6 +1,6 @@
 ## Model setup
 #timesteps
-dt = 0.000001
+dt = 0.01
 minutes = 60
 
 Kd_wt = 25.4 #nM, experimental values
@@ -12,6 +12,8 @@ WT_init = 1 #nM, from experimental setup
 short_init = 1 #nM
 dicer_init = 5 #nM
 mirna_init = 0
+WT_dicer_init = 0
+short_dicer_init = 0
 
 k1 = 5
 k_1 = Kd_wt * k1

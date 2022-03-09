@@ -9,7 +9,7 @@ Background and data obtained from Tsutsumi et al. 2011, Nat Struct Mol Biol, 10.
 import numpy as np
 import utils
 import params
-from scipy.integrate import solve_ivp
+
 
 #import parameters
 dt = params.dt
@@ -19,6 +19,11 @@ WT_init = params.WT_init
 short_init = params.short_init
 dicer_init = params.dicer_init
 mirna_init = params.mirna_init
+WT_dicer_init = params.WT_dicer_init
+short_dicer_init = params.short_dicer_init
+
+init_values = [WT_init, short_init, dicer_init, dicer_init, WT_dicer_init,
+                      short_dicer_init, mirna_init, mirna_init]
 
 k1 = params.k1
 k_1 = params.k_1
@@ -40,6 +45,22 @@ def ODE_mod(t, init_values):
     Returns
     WT, short (ndarrays):  Arrays containing concentrations of WT, short miRNA
     """
+    WT0, short0, dicer10, dicer20, WT_dicer0, short_dicer0, mirna10, mirna20 = init_values
+    
+    #WT mirna loop size
+    WT = WT_dicer0*k_1 - WT0*dicer10*k1
+    WT_dicer = WT0*dicer10*k1 - WT_dicer0*(k_1 + k3)
+    dicer1 = WT_dicer0*(k_1 + k3) - WT0*dicer10*k1
+    mirna1 = WT_dicer0*k3
+    
+    #short loop mirna
+    short = short_dicer0*k_2 - short0*dicer20*k2
+    short_dicer = short0*dicer20*k2 - short_dicer*(k_2 + k3)
+    dicer2 = short_dicer*(k_2 + k3) - short0*dicer20*k2
+    mirna2 = short_dicer0*k3
+    
+    return WT, short
+    
 
 def conc_change(theta):
     """
