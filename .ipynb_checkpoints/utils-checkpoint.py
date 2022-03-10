@@ -21,8 +21,8 @@ def generate_arrays(*, species, init_conc, dt = 0.01, minutes = 60):
     using the Euler method.
     
     Args
-    species (array, string):     List of species names to be used to 
-    init_conc (array of floats): List of inital concentrations in nM
+    species (1darray, string):   List of species names to be used to 
+    init_conc (1darray, float):  List of inital concentrations in nM
     dt (float):                  Timestep in minutes, defaults to 0.01 minutes
     minutes (int):               Minutes the model runs for, defaults to 60 minutes
     
@@ -50,7 +50,7 @@ def error(*, model_values, dt, minutes):
     figure 1 in Tsutsumi et al.
     
     Args
-    model_values (numpy 2d array): Array containing model values to be assessed.
+    model_values (2darray):        Array containing model values to be assessed.
     dt (float):                    Timestep
     minutes (integer):             Number of minutes model ran
     

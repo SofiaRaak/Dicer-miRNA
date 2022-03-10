@@ -40,7 +40,7 @@ def ODE_model(t, init_values):
     
     Args
     t (ndarray):           Time points
-    init_values (ndarray): Values from function at t
+    init_values (1darray): Values from function at t
     
     Returns
     WT, short (ndarrays):  Arrays containing concentrations of WT, short miRNA
@@ -55,11 +55,11 @@ def ODE_model(t, init_values):
     
     #short loop mirna
     short = short_dicer0*k_2 - short0*dicer20*k2
-    short_dicer = short0*dicer20*k2 - short_dicer*(k_2 + k3)
+    short_dicer = short0*dicer20*k2 - short_dicer0*(k_2 + k3)
     dicer2 = short_dicer*(k_2 + k3) - short0*dicer20*k2
     mirna2 = short_dicer0*k3
     
-    return WT, short
+    return WT, WT_dicer, dicer1, mirna1, short, short_dicer, dicer2, mirna2
     
 
 def conc_change(theta):
@@ -69,7 +69,7 @@ def conc_change(theta):
     NB! This method bugs out due to numbers too small to handle by computer.
     
     Args
-    theta (array of floats): Initial reaction rates for each species
+    theta (1darray): Initial reaction rates for each species
     """
     
     k1, k_1, k2, k_2, k3 = np.log(theta)
