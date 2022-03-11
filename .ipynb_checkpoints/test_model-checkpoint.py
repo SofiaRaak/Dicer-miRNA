@@ -23,4 +23,4 @@ def test_ODE_model():
     sol = solve_ivp(ODE_model, (0, int(params.minutes)), model.init_values, t_eval = np.linspace(0, int(params.minutes), int(params.minutes/params.dt)))
     WT, WT_dicer, dicer1, mirna1, short, short_dicer, dicer2, mirna2 = sol.y
     for i in range(len(WT)):
-        assert type(WT[i]) is np.float64 and type(short[i]) is np.float64 and WT[i] >= 0 and short[0][i] >=0
+        assert type(WT[i]) is np.float64 and type(short[i]) is np.float64 and WT[i] >= 0 and short[i] >=0

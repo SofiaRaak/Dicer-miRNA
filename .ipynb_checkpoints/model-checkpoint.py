@@ -46,6 +46,7 @@ def ODE_model(t, init_values):
     WT, short (ndarrays):  Arrays containing concentrations of WT, short miRNA
     """
     WT0, short0, dicer10, dicer20, WT_dicer0, short_dicer0, mirna10, mirna20 = init_values
+    k1, k_1, k2, k_2, k3 = np.log(theta)
     
     #WT mirna loop size
     WT = WT_dicer0*k_1 - WT0*dicer10*k1
