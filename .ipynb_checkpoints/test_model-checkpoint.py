@@ -11,7 +11,7 @@ import params
 def test_model():
     WT, short = conc_change(model.theta)
     for i in range(len(WT)):
-        assert type(WT[i]) is np.float64 and type(short[i]) is np.float64 and WT[i] #>= 0 and short[i] >=0
+        assert type(WT[i]) is np.float64 and type(short[i]) is np.float64 and WT[i] >= 0 and short[i] >=0
         
 
 def test_fractions():

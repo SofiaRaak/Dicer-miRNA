@@ -89,6 +89,18 @@ def conc_change(theta):
     mirna2 = arrays['mirna2']
     
     for i in range(1, len(WT)):
+         #force 0 if concentration negative
+            ##does not work
+        #WT[i-1] = max(WT[i-1], 0)
+        #dicer1[i-1] = max(dicer1[i-1], 0)
+        #WT_dicer[i-1] = max(WT_dicer[i-1], 0)
+        #mirna1[i-1] = max(mirna1[i-1], 0)
+        
+        #short[i-1] = max(short[i-1], 0)
+        #dicer2[i-1] = max(dicer2[i-1], 0)
+        #short_dicer[i-1] = max(short_dicer[i-1], 0)
+        #mirna2[i-1] = max(mirna2[i-1], 0)
+        
         #wild type mirna loop
         WT[i] = WT[i-1] + dt*(WT_dicer[i-1]*k_1 - WT[i-1]*dicer1[i-1]*k1)
         dicer1[i] = dicer1[i-1] + dt*(WT_dicer[i-1]*(k1 + k3) - WT[i-1]*dicer1[i-1]*k1)
