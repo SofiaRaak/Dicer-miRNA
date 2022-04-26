@@ -11,16 +11,23 @@ import params
 def test_model():
     WT, short = conc_change(model.theta)
     for i in range(len(WT)):
-        assert type(WT[i]) is np.float64 and type(short[i]) is np.float64 and WT[i] >= 0 and short[i] >=0
+        assert type(WT[i]) is np.float64 
+        assert type(short[i]) is np.float64 
+        assert WT[i] >= 0 
+        assert short[i] >=0
         
 
 def test_fractions():
     WT, short = frac_diced(model.theta)
     for i in range(1, len(WT)):
-        assert WT[i] >= WT[i-1] and short[i] >= short[i-1]
+        assert WT[i] >= WT[i-1]
+        assert short[i] >= short[i-1]
         
 def test_ODE_model():
     sol = solve_ivp(ODE_model, (0, int(params.minutes)), model.init_values, t_eval = np.linspace(0, int(params.minutes), int(params.minutes/params.dt)))
     WT, WT_dicer, dicer1, mirna1, short, short_dicer, dicer2, mirna2 = sol.y
     for i in range(len(WT)):
-        assert type(WT[i]) is np.float64 and type(short[i]) is np.float64 and WT[i] >= 0 and short[i] >=0
+        assert type(WT[i]) is np.float64
+        assert type(short[i]) is np.float64 
+        assert WT[i] >= 0 
+        assert short[i] >=0
