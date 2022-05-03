@@ -15,8 +15,8 @@ mirna_init = 0
 WT_dicer_init = 0
 short_dicer_init = 0
 
-k1 = 5
+k1 = 1
 k_1 = Kd_wt * k1
-k2 = 5
+k2 = 1
 k_2 = Kd_short * k2
-k3 = 5
+k3 = 1

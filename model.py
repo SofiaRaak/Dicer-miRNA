@@ -9,7 +9,7 @@ Background and data obtained from Tsutsumi et al. 2011, Nat Struct Mol Biol, 10.
 import numpy as np
 import utils
 import params
-
+import tqdm
 
 #import parameters
 dt = params.dt
@@ -46,7 +46,7 @@ def ODE_model(t, init_values):
     WT, short (ndarrays):  Arrays containing concentrations of WT, short miRNA
     """
     WT0, short0, dicer10, dicer20, WT_dicer0, short_dicer0, mirna10, mirna20 = init_values
-    k1, k_1, k2, k_2, k3 = theta
+    k1, k_1, k2, k_2, k3 = np.exp(theta)
     
     #WT mirna loop size
     WT = WT_dicer0*k_1 - WT0*dicer10*k1
@@ -73,7 +73,7 @@ def conc_change(theta):
     theta (1darray): Initial reaction rates for each species
     """
     
-    k1, k_1, k2, k_2, k3 = np.log(theta)
+    k1, k_1, k2, k_2, k3 = np.exp(theta)
     
     arrays = utils.generate_arrays(species = ['WT', 'dicer1', 'short', 'dicer2', 'WT_dicer', 'short_dicer', 'mirna1', 'mirna2'], 
                                    init_conc = [WT_init, dicer_init, short_init, dicer_init, 0, 0, mirna_init, mirna_init],
@@ -88,7 +88,7 @@ def conc_change(theta):
     mirna1 = arrays['mirna1']
     mirna2 = arrays['mirna2']
     
-    for i in range(1, len(WT)):
+    for i in tqdm.tqdm(range(1, len(WT))):
          #force 0 if concentration negative
             ##does not work
         #WT[i-1] = max(WT[i-1], 0)
