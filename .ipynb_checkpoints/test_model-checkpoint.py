@@ -16,6 +16,8 @@ def test_model():
         assert type(short[i]) is np.float64 
         assert WT[i] >= 0 
         assert short[i] >=0
+        assert WT[i] <= WT[0]
+        assert short[i] <= short[0]
         
 
 def test_fractions():
