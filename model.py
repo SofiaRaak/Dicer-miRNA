@@ -68,6 +68,7 @@ def conc_change(theta):
     The main model function. Fills out numpy arrays through solving ODEs with the Euler method.
     
     NB! This method bugs out due to numbers too small to handle by computer.
+    NB2: Now fixed with v. small stepsize, passing log of theta and transforming when unpacking.
     
     Args
     theta (1darray): Initial reaction rates for each species
