@@ -60,7 +60,7 @@ def ODE_model(t, init_values):
     dicer2 = short_dicer*(k_2 + k3) - short0*dicer20*k2
     mirna2 = short_dicer0*k3
     
-    return WT, WT_dicer, dicer1, mirna1, short, short_dicer, dicer2, mirna2
+    return WT, short, dicer1, dicer2, WT_dicer, short_dicer,  mirna1, mirna2
     
 
 def conc_change(theta):
@@ -104,8 +104,8 @@ def conc_change(theta):
         
         #wild type mirna loop
         WT[i] = WT[i-1] + dt*(WT_dicer[i-1]*k_1 - WT[i-1]*dicer1[i-1]*k1)
-        dicer1[i] = dicer1[i-1] + dt*(WT_dicer[i-1]*(k1 + k3) - WT[i-1]*dicer1[i-1]*k1)
-        WT_dicer[i] = WT_dicer[i-1] + dt*(WT[i-1]*dicer1[i-1]*k1 - WT_dicer[i-1]*(k1 + k3))
+        dicer1[i] = dicer1[i-1] + dt*(WT_dicer[i-1]*(k_1 + k3) - WT[i-1]*dicer1[i-1]*k1)
+        WT_dicer[i] = WT_dicer[i-1] + dt*(WT[i-1]*dicer1[i-1]*k1 - WT_dicer[i-1]*(k_1 + k3))
         mirna1[i] = mirna1[i-1] + dt*(WT_dicer[i-1]*k3)
         
         #short mirna loop
