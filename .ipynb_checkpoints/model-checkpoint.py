@@ -57,7 +57,7 @@ def ODE_model(t, init_values):
     #short loop mirna
     short = short_dicer0*k_2 - short0*dicer20*k2
     short_dicer = short0*dicer20*k2 - short_dicer0*(k_2 + k3)
-    dicer2 = short_dicer*(k_2 + k3) - short0*dicer20*k2
+    dicer2 = short_dicer0*(k_2 + k3) - short0*dicer20*k2
     mirna2 = short_dicer0*k3
     
     return WT, short, dicer1, dicer2, WT_dicer, short_dicer,  mirna1, mirna2
