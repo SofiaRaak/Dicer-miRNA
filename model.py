@@ -155,4 +155,4 @@ def frac_diced_ODE(theta):
         WT_diced[i] = (WT[0] - WT[i]) / WT[0]
         short_diced[i] = (short[0] - short[i]) / short[0]
         
-    return WT_diced, short_diced
+    return WT_diced, short_diced, sol.t

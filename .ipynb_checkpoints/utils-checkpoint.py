@@ -80,3 +80,24 @@ def error(*, model_values, dt, minutes):
                      [short]])
     
     return np.sum(np.power((data - model),2))
+
+
+def error_ODE(*, model_values, ts):
+    """
+    A function to calculate the relative error of ODE model values against data values extracted from
+    figure 1 in Tsutsumu et al.
+    
+    Args
+    model_values (2darray):    Array containing model values to be assessed
+    ts (1darray):              Array containing the time points the model was evaluated on
+    """
+    WT_model, short_model = model_values
+    
+    WT = np.interp(time, ts, WT_model)
+    short = np.interp(time, ts, short_model)
+    
+    model = np.array([[WT],
+                      [short]])
+    
+    return np.sum(np.power((data - model),2))
+    

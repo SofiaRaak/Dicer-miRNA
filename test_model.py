@@ -40,7 +40,7 @@ def test_ODE_model():
         assert short[i] <= short[0]
         
 def test_fractions_ODE():
-    WT, short = frac_diced_ODE(model.theta)
+    WT, short, time = frac_diced_ODE(model.theta)
     for i in tqdm.tqdm(range(1, len(WT))):
         assert WT[i] >= WT[i-1]
         assert short[i] >= short[i-1]
