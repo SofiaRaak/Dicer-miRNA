@@ -10,6 +10,7 @@ import numpy as np
 import utils
 import params
 import tqdm
+from scipy.integrate import solve_ivp
 
 #import parameters
 dt = params.dt
@@ -119,7 +120,7 @@ def conc_change(theta):
 
 def frac_diced(theta):
     """
-    Function to calculate the fraction of WT, short miRNA that has been diced
+    Function to calculate the fraction of WT, short miRNA that has been diced from stepwise function
     """
     
     WT, short = conc_change(theta)
@@ -135,3 +136,23 @@ def frac_diced(theta):
         
     return WT_diced, short_diced
 
+def frac_diced_ODE(theta):
+    """
+    Function to calculate the fraction of WT, short miRNA that has been diced from ODE function
+    """
+    theta = theta
+    
+    sol = solve_ivp(ODE_model, (0, int(params.minutes)), init_values)
+    
+    WT, short, dicer1, dicer2, WT_dicer, short_dicer,  mirna1, mirna2 = sol.y
+    
+    arrays = utils.generate_arrays(species = ['WT_diced', 'short_diced'], init_conc = [0, 0],
+                                  length = [int(len(WT)), int(len(short))])
+    WT_diced = arrays['WT_diced']
+    short_diced = arrays['short_diced']
+    
+    for i in range(len(WT)):
+        WT_diced[i] = (WT[0] - WT[i]) / WT[0]
+        short_diced[i] = (short[0] - short[i]) / short[0]
+        
+    return WT_diced, short_diced

@@ -14,7 +14,7 @@ short_y = np.array([0, 0.0033684107002276975, 0.007599822974028003, 0.0100191778
 data = np.array([[WT_y],
                  [short_y]])
 
-def generate_arrays(*, species, init_conc, dt = 0.01, minutes = 60):
+def generate_arrays(*, species, init_conc, dt = None, minutes = None, length = None):
     """
     A function that takes initially provided parameters and produces a
     selection of numpy arrays to be filled through solving model ODEs
@@ -23,8 +23,9 @@ def generate_arrays(*, species, init_conc, dt = 0.01, minutes = 60):
     Args
     species (1darray, string):   List of species names to be used to 
     init_conc (1darray, float):  List of inital concentrations in nM
-    dt (float):                  Timestep in minutes, defaults to 0.01 minutes
-    minutes (int):               Minutes the model runs for, defaults to 60 minutes
+    dt (float):                  Timestep in minutes, defaults None
+    minutes (int):               Minutes the model runs for, defaults to None
+    length (1darray, int):       List of explicit length of arrays, defaults to None
     
     Returns
     Dictionary of numpy arrays:  Returns dictionary of numpy arrays with initial concentrations 
@@ -37,10 +38,20 @@ def generate_arrays(*, species, init_conc, dt = 0.01, minutes = 60):
     
     if len(species) != len(init_conc):
         raise ValueError('Please provide initial concentrations for each species.')
+    if dt == None and minutes == None and length == None:
+        raise ValueError('Please provide either timestep and minutes for the model, or the required length of the array')
     
-    for i in range(len(species)):
-        arrays[species[i]] = np.zeros(int(minutes/dt))
-        arrays[species[i]][0] = init_conc[i]
+    if dt != None and minutes != None:
+        for i in range(len(species)):
+            arrays[species[i]] = np.zeros(int(minutes/dt))
+            arrays[species[i]][0] = init_conc[i]
+    
+    elif length != None:
+        if len(length) != len(species):
+            raise ValueError('Please provide a specified length for the array for each species.')
+        for i in range(len(species)):
+            arrays[species[i]] = np.zeros(length[int(i)])
+            arrays[species[i]][0] = init_conc[i]
     
     return arrays
     
@@ -48,6 +59,8 @@ def error(*, model_values, dt, minutes):
     """
     A function that calculates the relative error of the model values against data values extracted from
     figure 1 in Tsutsumi et al.
+    
+    Step-wise model only.
     
     Args
     model_values (2darray):        Array containing model values to be assessed.
