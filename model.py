@@ -32,7 +32,7 @@ k2 = params.k2
 k_2 = params.k_2
 k3 = params.k3
 
-theta = np.log([k1, k_1, k2, k_2, k3])
+theta = np.log([k1, k2, k3])
 
 #functions
 def ODE_model(t, init_values):
@@ -47,7 +47,7 @@ def ODE_model(t, init_values):
     WT, short (ndarrays):  Arrays containing concentrations of WT, short miRNA
     """
     WT0, short0, dicer10, dicer20, WT_dicer0, short_dicer0, mirna10, mirna20 = init_values
-    k1, k_1, k2, k_2, k3 = np.exp(theta)
+    k1, k2, k3 = np.exp(theta)
     
     #WT mirna loop size
     WT = WT_dicer0*k_1 - WT0*dicer10*k1
@@ -75,7 +75,7 @@ def conc_change(theta):
     theta (1darray): Initial reaction rates for each species
     """
     
-    k1, k_1, k2, k_2, k3 = np.exp(theta)
+    k1, k2, k3 = np.exp(theta)
     
     arrays = utils.generate_arrays(species = ['WT', 'dicer1', 'short', 'dicer2', 'WT_dicer', 'short_dicer', 'mirna1', 'mirna2'], 
                                    init_conc = [WT_init, dicer_init, short_init, dicer_init, 0, 0, mirna_init, mirna_init],

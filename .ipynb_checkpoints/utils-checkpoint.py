@@ -73,6 +73,9 @@ def error(*, model_values, dt, minutes):
     
     ts = np.linspace(0, minutes, int(minutes/dt))
     
+    if len(WT_model) != len(ts):
+        raise ValueError('Discrepancy between expected and provided array length')
+    
     WT = np.interp(time, ts, WT_model)
     short = np.interp(time, ts, short_model)
     
