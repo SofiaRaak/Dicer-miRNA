@@ -34,8 +34,12 @@ k3 = params.k3
 
 theta = np.log([k1, k2, k3])
 
+ka = np.log(k1)
+kb = np.log(k2)
+kc = np.log(k3)
+
 #functions
-def ODE_model(t, init_values):
+def ODE_model(t, init_values, ka, kb, kc):
     """
     This is a function to be passed to an ODE solver.
     
@@ -47,7 +51,9 @@ def ODE_model(t, init_values):
     WT, short (ndarrays):  Arrays containing concentrations of WT, short miRNA
     """
     WT0, short0, dicer10, dicer20, WT_dicer0, short_dicer0, mirna10, mirna20 = init_values
-    k1, k2, k3 = np.exp(theta)
+    k1 = np.exp(ka)
+    k2 = np.exp(kb)
+    k3 = np.exp(kc)
     
     #WT mirna loop size
     WT = WT_dicer0*k_1 - WT0*dicer10*k1
@@ -140,9 +146,9 @@ def frac_diced_ODE(theta):
     """
     Function to calculate the fraction of WT, short miRNA that has been diced from ODE function
     """
-    theta = theta
+    k1, k2, k3 = theta
     
-    sol = solve_ivp(ODE_model, (0, int(params.minutes)), init_values)
+    sol = solve_ivp(ODE_model, (0, int(params.minutes)), init_values, args = (k1, k2, k3))
     
     WT, short, dicer1, dicer2, WT_dicer, short_dicer,  mirna1, mirna2 = sol.y
     

@@ -28,7 +28,7 @@ def test_fractions():
         assert short[i] >= short[i-1]
         
 def test_ODE_model():
-    sol = solve_ivp(ODE_model, (0, int(params.minutes)), model.init_values)#, t_eval = np.linspace(0, int(params.minutes), int(params.minutes/params.dt)))#, method = 'BDF')#, args = (model.theta))
+    sol = solve_ivp(ODE_model, (0, int(params.minutes)), model.init_values, args = (model.ka, model.kb, model.kc))#, t_eval = np.linspace(0, int(params.minutes), int(params.minutes/params.dt)))#, method = 'BDF')#, args = (model.theta))
     WT, short, dicer1, dicer2, WT_dicer, short_dicer,  mirna1, mirna2 = sol.y
     print(sol.message)
     for i in tqdm.tqdm(range(len(WT))):

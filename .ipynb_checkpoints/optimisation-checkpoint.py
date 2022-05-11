@@ -37,16 +37,16 @@ print(utils.data)
 
 print(ErrorODE(model.theta))
 
-res1 = minimize(ErrorODE, model.theta, method = 'Nelder-Mead', tol=1e-6) #nm
+res1 = minimize(ErrorODE, model.theta, method = 'Nelder-Mead', tol=1e-10) #nm
 
 print(res1)
 
-print(r'\n\n')
+#print(np.exp(model.theta))
 
-print(np.exp(model.theta))
+#print(Error(model.theta))
 
-print(Error(model.theta))
+#res2 = minimize(Error, model.theta, method = 'Nelder-Mead', tol=1e-6)
 
-res2 = minimize(Error, model.theta, method = 'Nelder-Mead', tol=1e-6)
+#print(res2)
 
-print(res2)
+#res3 = 
