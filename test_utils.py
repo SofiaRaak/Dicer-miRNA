@@ -15,7 +15,8 @@ mock1a = np.interp(utils.time, ts1, mock1a)
 mock1b = np.random.random(int(minutes/dt1))
 mock1b = np.sort(mock1b)
 mock1b = np.interp(utils.time, ts1, mock1b)
-mock1 = [mock1a, mock1b]
+mock1 = np.array([[mock1a],
+                  [mock1b]])
 expect1 = np.sum(np.power((utils.data - mock1), 2))
 
 dt2 = 0.1
@@ -26,7 +27,8 @@ mock2a = np.interp(utils.time, ts2, mock2a)
 mock2b = np.random.random(int(minutes/dt2))
 mock2b = np.sort(mock2b)
 mock2b = np.interp(utils.time, ts2, mock2b)
-mock2 = [mock2a, mock2b]
+mock2 = np.array([[mock2a],
+                  [mock2b]])
 expect2 = np.sum(np.power((utils.data - mock2), 2))
 
 @pytest.mark.parametrize('species, init_conc, expect', [
