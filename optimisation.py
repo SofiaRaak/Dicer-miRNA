@@ -11,7 +11,7 @@ def ErrorODE(theta):
     """
     Error function for ODE model based on error function described in utils module
     """
-    WT_diced, short_diced, ts = model.frac_diced_ODE(model.theta)
+    WT_diced, short_diced, ts = model.frac_diced_ODE(theta)
     
     model_values =  np.array([WT_diced, short_diced])
     
@@ -23,7 +23,7 @@ def Error(theta):
     Error function for stepwise model based on error function described in utils module
     """
     
-    WT_diced, short_diced = model.frac_diced(model.theta)
+    WT_diced, short_diced = model.frac_diced(theta)
     
     model_values = np.array([WT_diced, short_diced])
     
@@ -37,14 +37,14 @@ print(utils.data)
 
 print(ErrorODE(model.theta))
 
-res1 = minimize(ErrorODE, model.theta, method = 'Nelder-Mead', tol=1e-10) #nm
+res1 = minimize(ErrorODE, model.theta, method = 'Nelder-Mead') #nm
 
 print(res1)
 
 #print(np.exp(model.theta))
 
 #print(Error(model.theta))
-
+#
 #res2 = minimize(Error, model.theta, method = 'Nelder-Mead', tol=1e-6)
 
 #print(res2)
